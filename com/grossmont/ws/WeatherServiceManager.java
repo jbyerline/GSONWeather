@@ -68,9 +68,6 @@ public class WeatherServiceManager{
         convertJsonToJavaObject();
     }
 
-
-
-
 	// Uses Google's gson library to convert json into filled java objects
 	// using the java object heirarchy that you already created.
     private void convertJsonToJavaObject(){
@@ -80,9 +77,6 @@ public class WeatherServiceManager{
         m_oWeather = gson.fromJson(m_sWeatherJson, Weather.class);
     }
 
-
-
-
     // This uses Google's gson library for parsing json.
     public float getCurrentTemp(){
 
@@ -90,27 +84,6 @@ public class WeatherServiceManager{
     }
 
 
-
-
-	// ###################################
-    // ###### BEGIN: YOUR CODE HERE ######
-    //
-    // Add three methods... (Use getCurrentTemp as a template):
-    //
-    // getCityName
-    //   - input: nothing.
-    //   - output: return the city name as a String (this is in m_oWeather.name).
-    //
-    // getHighTemp
-    //   - input: nothing.
-    //   - output: return the high temp as a float.
-    //
-    // getLowTemp
-    //   - input: nothing.
-    //   - output: return the low temp as a float.
-    //
-    // ###### END: YOUR CODE HERE ######
-    // #################################
     public String getCityName(){
 
         return m_oWeather.name;
@@ -127,23 +100,9 @@ public class WeatherServiceManager{
     }
 
 
-
-
-
-    // If you are running this in Tomcat, then this main method
-    // can be used when developing if you want to test the functions directly
-    // in your IDE to make sure these classes work first before calling from JSP...
-    // which is quicker than restarting Tomcat every time
-    // you make an adjustment to your class.
-    // Also, it's handy to use the System.out.println tool to print out values
-    // to the console when testing or use break points and run in debug mode.
     public static void main(String[] args){
 
-		// If you are NOT incorporating these classes into Tomcat, then do the following for the lab:
-
-		// ###### BEGIN: YOUR CODE HERE ######
 		// 1. Instantiate two instances of this class: WeatherServiceManager
-		// 		- Each object will represent each city.
 
         WeatherServiceManager oCity1 = new WeatherServiceManager();
         WeatherServiceManager oCity2 = new WeatherServiceManager();
@@ -156,7 +115,6 @@ public class WeatherServiceManager{
         System.out.println("Enter City 2: ");
         String sCity2 = sc.nextLine();
 		// 3. IMPORTANT: Take any space in the city of user input with %20 (e.g. "san diego, california" becomes "san%20diego,california").
-		//		- To do this, simply use the replaceAll method on your city string like this:
 					sCity1 = sCity1.replaceAll(" ","%20");
                     sCity2 = sCity2.replaceAll(" ","%20");
 		// 3. Call callWeatherWebService on each WeatherServiceManager instance passing in each city.
@@ -165,9 +123,6 @@ public class WeatherServiceManager{
         oCity2.callWeatherWebService(sCity2);
 
 		// 4. Then make comparisons of temps between cities on each WeatherServiceManager instance by using the get methods created above:
-		//		- Print out which city has the HIGHEST CURRENT TEMP (NOTE: you can get city name from your m_oWeather.
-		// 		- Print out which city has the GREATEST RANGE between low and high.
-		// ###### END: YOUR CODE HERE ######
 
         if(oCity1.getCurrentTemp() > oCity2.getCurrentTemp()){
             System.out.println(oCity1.getCityName() + " has the highest current temp");
@@ -188,14 +143,6 @@ public class WeatherServiceManager{
     }
 
 
-
-
-	// ------------------------------------------------------------------------------------------------------------
-
-    // ***********************************
-	// *** BEGIN: NOT PART OF THIS LAB ***
-	// Only included here just as an example of how the raw json
-	// could be parsed directly w/o using 3rd party library like gson.
 	public float getTempManualParse(){
 
 		String sTemp = "";
@@ -209,6 +156,6 @@ public class WeatherServiceManager{
 
 		return fTemp;
 	}
-    // *** END: NOT part of lab ***
+
 
 }
